@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمد ❤️ نسيبة</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  text-align: center;
+  background: linear-gradient(120deg, #ff758c, #ff7eb3);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.box {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  width: 320px;
+  margin: 100px auto;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+input, button {
+  width: 90%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+button {
+  background: #ff4f81;
+  color: white;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+img {
+  width: 220px;
+  margin: 10px;
+  border-radius: 18px;
+}
+
+/* قلوب */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-800px); opacity: 0; }
+}
+
+/* نسخة موبايل فخمة */
+@media (max-width: 600px) {
+  .box {
+    width: 90%;
+    margin: 80px auto;
+    padding: 25px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  img {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- موسيقى -->
+<audio id="music" loop>
+  <source src="song.m4a" type="audio/mpeg">
+</audio>
+
+<!-- دخول -->
+<div class="box" id="login">
+  <h2>💌 دخول خاص</h2>
+  <input type="password" id="password" placeholder="كلمة السر">
+  <button onclick="checkPassword()">دخول</button>
+</div>
+
+<!-- رسالة الحب -->
+<div class="box hidden" id="loveMessage">
+  <h2>❤️ عيد حب سعيد ❤️</h2>
+
+  <p>
+  نسيبة ❤️<br><br>
+
+  من يوم 20 / 1 / 2026  
+  والوقت ما عادش يمشي،  
+  صار يوقف احترامًا للحظات اللي تجمعني بيك 💫<br><br>
+
+  أنا محمد،  
+  والصدق إني قبلِك كنت نعيش  
+  لكن ما كنتش نحس،  
+  نضحك… بس بلا طمأنينة.<br><br>
+
+  وجودك غيّرني،  
+  علّمني إن الحب مش كلام  
+  الحب حضن،  
+  ونظرة تقول “أنا معاك” بدون ولا حرف 🌹<br><br>
+
+  معاك،  
+  حتى التفاصيل الصغيرة  
+  صارت كبيرة في عيني  
+  ضحكة، رسالة، سكوتك  
+  كله صار وطن ❤️<br><br>
+
+  نسيبة…  
+  لو خيروني بين العالم كله  
+  وبين لحظة وحدة معاك  
+  نختارك انتي، ونقفل الباب على الباقي 🚪✨<br><br>
+
+  وعد مني:  
+  نكون أمانك وقت الخوف  
+  وفرحتك وقت الحزن  
+  وشريكك في كل يوم  
+  مش بس في عيد الحب  
+  لكن في العمر كله 💍💖
+  </p>
+
+  <p id="counter"></p>
+
+  <button onclick="showGallery()">ذكرياتنا 📸</button>
+</div>
+
+<!-- معرض الصور -->
+<div class="box hidden" id="gallery">
+  <h2>🌹 ذكرياتنا 🌹</h2>
+<img src="img1.jpg" alt="ذكرى جميلة">
+<img src="img2.jpg" alt="ذكرى جميلة">
+<img src=img3.jpg" alt="ذكرى جميلة">
+ <img src="img4.jpg" alt="ذكرى جميلة">
+   <img src=img6.jpg"alt="ذكرى جميلة">
+    <img src="img7.jpg"alt="ذكرى جميله">
+  <br>
+  <button onclick="logout()">خروج</button>
+</div>
+
+<script>
+const correctPassword = "MohNes2026";
+const loveDate = new Date("2026-01-20");
+
+function checkPassword() {
+  const pass = document.getElementById("password").value;
+  if (pass === correctPassword) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("loveMessage").classList.remove("hidden");
+    document.getElementById("music").play();
+    startHearts();
+    updateCounter();
+  } else {
+    alert("كلمة السر غلط 💔");
+  }
+}
+
+function showGallery() {
+  document.getElementById("loveMessage").classList.add("hidden");
+  document.getElementById("gallery").classList.remove("hidden");
+}
+
+function logout() {
+  location.reload();
+}
+
+function updateCounter() {
+  const now = new Date();
+  const diff = Math.floor((now - loveDate) / (1000 * 60 * 60 * 24));
+  document.getElementById("counter").innerHTML =
+    `⏳ ${diff} يوم حب بين محمد و نسيبة 💖`;
+}
+
+function startHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }, 400);
+}
+</script>
+
+</body>
+  </html>
